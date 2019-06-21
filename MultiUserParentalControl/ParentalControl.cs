@@ -24,13 +24,6 @@ namespace ParentalControl
             InitializeComponent();
         }
 
-        private void GrantAccess(string fullPath)
-        {
-            DirectoryInfo dInfo = new DirectoryInfo(fullPath);
-            DirectorySecurity dSecurity = dInfo.GetAccessControl();
-            dSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.BuiltinUsersSid, null), FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit, PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
-            dInfo.SetAccessControl(dSecurity);
-        }
         private void Form1_Load(object sender, EventArgs e)
         {
             saveData.sessionLimit = 30;
@@ -61,7 +54,7 @@ namespace ParentalControl
             sessionLimitArchive = saveData.sessionLimit;
 
             this.FormClosing += new FormClosingEventHandler(Form1_FormClosing);
-            //CoinMethods.setCoins("Madilynn", CoinMethods.getCoins("Madilynn")-20);
+            SqlMethods.writeToPointsLog("has logged in.");
         }
 
         private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
@@ -74,6 +67,14 @@ namespace ParentalControl
             //else
             //    WindowState = FormWindowState.Minimized;
             MessageBox.Show("Open the settings in order to close the program.");
+        }
+
+        private void GrantAccess(string fullPath)
+        {
+            DirectoryInfo dInfo = new DirectoryInfo(fullPath);
+            DirectorySecurity dSecurity = dInfo.GetAccessControl();
+            dSecurity.AddAccessRule(new FileSystemAccessRule(new SecurityIdentifier(WellKnownSidType.BuiltinUsersSid, null), FileSystemRights.FullControl, InheritanceFlags.ObjectInherit | InheritanceFlags.ContainerInherit, PropagationFlags.NoPropagateInherit, AccessControlType.Allow));
+            dInfo.SetAccessControl(dSecurity);
         }
         private void button_Logoff_Click(object sender, EventArgs e)
         {
