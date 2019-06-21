@@ -13,6 +13,7 @@ namespace ParentalControl
     {
         public int sessionLimit;
         public string passCode;
+        public int numCoinsRequired;
     }
     public class ProgramData
     {

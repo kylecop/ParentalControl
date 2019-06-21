@@ -38,6 +38,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label_Coins = new System.Windows.Forms.Label();
             this.label_numCoins = new System.Windows.Forms.Label();
+            this.timer_3_sec = new System.Windows.Forms.Timer(this.components);
+            this.button_payForGames = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label_userName
@@ -130,11 +132,30 @@
             this.label_numCoins.TabIndex = 12;
             this.label_numCoins.Text = "0";
             // 
+            // timer_3_sec
+            // 
+            this.timer_3_sec.Enabled = true;
+            this.timer_3_sec.Interval = 3000;
+            this.timer_3_sec.Tick += new System.EventHandler(this.Timer_3_sec_Tick);
+            // 
+            // button_payForGames
+            // 
+            this.button_payForGames.BackColor = System.Drawing.Color.Maroon;
+            this.button_payForGames.ForeColor = System.Drawing.Color.White;
+            this.button_payForGames.Location = new System.Drawing.Point(12, 527);
+            this.button_payForGames.Name = "button_payForGames";
+            this.button_payForGames.Size = new System.Drawing.Size(281, 119);
+            this.button_payForGames.TabIndex = 14;
+            this.button_payForGames.Text = "Pay For Games";
+            this.button_payForGames.UseVisualStyleBackColor = false;
+            this.button_payForGames.Click += new System.EventHandler(this.Button_payForGames_Click);
+            // 
             // ParentalControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(896, 658);
+            this.Controls.Add(this.button_payForGames);
             this.Controls.Add(this.label_Coins);
             this.Controls.Add(this.label_numCoins);
             this.Controls.Add(this.label2);
@@ -143,7 +164,7 @@
             this.Controls.Add(this.button_Logoff);
             this.Controls.Add(this.button_settings);
             this.Controls.Add(this.label_sessionTimeLeft);
-            this.Name = "MultiUserParentalControl";
+            this.Name = "ParentalControl";
             this.Text = "MultiUserParentalControl";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -162,6 +183,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label_Coins;
         private System.Windows.Forms.Label label_numCoins;
+        private System.Windows.Forms.Timer timer_3_sec;
+        private System.Windows.Forms.Button button_payForGames;
     }
 }
 

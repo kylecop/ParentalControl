@@ -64,6 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\CoinMethods.cs" />
+    <Compile Include="Classes\EncryptionMethods.cs" />
+    <Compile Include="Classes\ExeMethods.cs" />
     <Compile Include="Classes\RestoreFromMinimize.cs" />
     <Compile Include="Classes\SqlMethods.cs" />
     <Compile Include="Classes\WindowsCommandOverrides.cs" />

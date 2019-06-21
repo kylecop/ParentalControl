@@ -21,7 +21,7 @@ namespace ParentalControl
 
         private void Password_Load(object sender, EventArgs e)
         {
-            saveData = (SaveData)StructMethods.LoadData(ProgramData.settingsPath);
+            saveData = (SaveData)StructMethods.LoadData();
             maskedTextBox1.KeyDown += new KeyEventHandler(maskedTextBox1_KeyDown);
         }
 

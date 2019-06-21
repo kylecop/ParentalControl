@@ -15,7 +15,6 @@ namespace ParentalControl.Forms
         SaveData saveData = new SaveData();
         public Settings()
         {
-            saveData = (SaveData)StructMethods.LoadData(ProgramData.settingsPath);
             InitializeComponent();
         }
 
@@ -24,7 +23,7 @@ namespace ParentalControl.Forms
             if(maskedTextBox_newPIN.Text == maskedTextBox_newPIN_Confirmation.Text)
             {
                 saveData.passCode = maskedTextBox_newPIN.Text;
-                StructMethods.SaveData(ProgramData.settingsPath, saveData);
+                StructMethods.SaveData(saveData);
                 MessageBox.Show("New passcode has been saved!");
                 maskedTextBox_newPIN.Text = "";
                 maskedTextBox_newPIN_Confirmation.Text = "";
@@ -51,7 +50,7 @@ namespace ParentalControl.Forms
         private void button_Apply_Click(object sender, EventArgs e)
         {
             Int32.TryParse(textBox_SessionLimit.Text, out saveData.sessionLimit);
-            StructMethods.SaveData(ProgramData.settingsPath, saveData);
+            StructMethods.SaveData(saveData);
             Close();
         }
 
@@ -76,11 +75,14 @@ namespace ParentalControl.Forms
 
         private void Settings_Load(object sender, EventArgs e)
         {
+            saveData = (SaveData)StructMethods.LoadData();
+            SqlMethods.writeToPointsLog("has opened the Settings.");
             textBox_SessionLimit.Text = saveData.sessionLimit.ToString();
         }
 
         private void button_Close_Click(object sender, EventArgs e)
         {
+            SqlMethods.writeToPointsLog("has closed the program.");
             Environment.Exit(1);
         }
     }

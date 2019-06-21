@@ -104,5 +104,10 @@ namespace ParentalControl
             //MessageBox.Show(newFile.ToString());
             File.WriteAllText(@"C:\\Program Files (x86)\\EasyBits For Kids\\_Users.dat", newFile.ToString());
         }
+        public static void decreaseCoinsForExe(int numCoins, int numCoinsRequired)
+        {
+            SqlMethods.writeToPointsLog("has spent " + numCoinsRequired.ToString() + " coins.");
+            setCoins(Environment.UserName, numCoins - numCoinsRequired);
+        }
     }
 }

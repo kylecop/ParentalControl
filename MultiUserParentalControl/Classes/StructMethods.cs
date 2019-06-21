@@ -10,23 +10,41 @@ namespace ParentalControl
 {
     public class StructMethods
     {
-        public static void SaveData(string fileName, object structData)
+        public static void SaveData(SaveData saveData)
         {
-            using (var file = File.OpenWrite(fileName))
-            {
-                var writer = new BinaryFormatter();
-                writer.Serialize(file, structData); 
-            }
+            SqlMethods.updateSqlString("settings", EncryptionMethods.EncryptString(saveData.passCode.ToString(), "***REMOVED***"), "passCode");
+            SqlMethods.updateSqlString("settings", saveData.sessionLimit.ToString(), "sessionLimit");
+            SqlMethods.updateSqlString("settings", saveData.numCoinsRequired.ToString(), "numCoinsRequired");
         }
-        public static object LoadData(string fileName)
+        //public static void SaveData(string fileName, object structData)
+        //{
+        //    using (var file = File.OpenWrite(fileName))
+        //    {
+        //        var writer = new BinaryFormatter();
+        //        writer.Serialize(file, structData); 
+        //    }
+        //}
+        //public static object LoadData(string fileName)
+        //{
+        //    SaveData saveData = new SaveData();
+        //    using (var file = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+        //    {
+        //        var reader = new BinaryFormatter();
+        //        saveData = (SaveData)reader.Deserialize(file);
+        //    }
+        //    return saveData;
+        //}
+        public static object LoadData()
         {
-            SaveData saveData = new SaveData();
-            using (var file = File.Open(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
-            {
-                var reader = new BinaryFormatter();
-                saveData = (SaveData)reader.Deserialize(file);
-            }
-            return saveData;
+
+            SaveData result = new SaveData();
+            //settings - settingName - value        - sessionLimit, numCoinsRequired, passCode
+            //public static string getSqlString(string selectString, string fromString, string orderByString = "", string limitString = "")
+
+            Int32.TryParse(SqlMethods.getSqlString("SELECT value FROM settings WHERE `settingName`='sessionLimit'"), out result.sessionLimit);
+            Int32.TryParse(SqlMethods.getSqlString("SELECT value FROM settings WHERE `settingName`='numCoinsRequired'"), out result.numCoinsRequired);
+            result.passCode = EncryptionMethods.DecryptString(SqlMethods.getSqlString("SELECT value FROM settings WHERE `settingName`='passCode'"), "***REMOVED***");
+            return result;
         }
     }
 }
