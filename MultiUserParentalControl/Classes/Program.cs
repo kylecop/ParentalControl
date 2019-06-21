@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MultiUserParentalControl
+namespace ParentalControl
 {
     [Serializable]
     public struct SaveData
@@ -17,7 +17,7 @@ namespace MultiUserParentalControl
     public class ProgramData
     {
         public static DateTime startTime = DateTime.Now;
-        // folder path depends on environment but is typically c:\programdata\MultiUserParentalControl\MultiuserParentalControl\
+        // folder path depends on environment but is typically c:\programdata\ParentalControl\MultiuserParentalControl\
         public static string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\" + Application.CompanyName + "\\" + Application.ProductName + "\\";
         public static string settingsPath = folderPath + "settings.ini";
     }
@@ -31,7 +31,7 @@ namespace MultiUserParentalControl
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MultiUserParentalControl());
+            Application.Run(new ParentalControl());
         }
     }
 }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace MultiUserParentalControl.Forms
+namespace ParentalControl.Forms
 {
     public partial class Settings : Form
     {

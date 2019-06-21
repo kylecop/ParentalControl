@@ -1,4 +1,4 @@
-﻿namespace MultiUserParentalControl.Forms
+﻿namespace ParentalControl.Forms
 {
     partial class Settings
     {

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MultiUserParentalControl.Properties {
+namespace ParentalControl.Properties {
     using System;
     
     

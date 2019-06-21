@@ -1,4 +1,4 @@
-﻿namespace MultiUserParentalControl
+﻿namespace ParentalControl
 {
     partial class Password
     {
