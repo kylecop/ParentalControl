@@ -1,5 +1,12 @@
-# MultiUserParentalControl
+# ParentalControl
 This project provides a parental control environment with enough security for kids. A kid with knowledge of how the windows operating system works, can figure out how to bypass this software.
+
+Suggested windows configuration: 
+1. User is a standard user (not an administrator)
+2. Disable Task Manager
+3. Disable command prompt and powershell
+4. Use applocker
+5. launch application on start up
 
 The default PIN is 9999.
 
