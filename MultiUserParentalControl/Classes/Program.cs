@@ -8,7 +8,6 @@ using System.Windows.Forms;
 
 namespace MultiUserParentalControl
 {
-
     [Serializable]
     public struct SaveData
     {

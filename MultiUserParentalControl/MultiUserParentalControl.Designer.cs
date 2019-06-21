@@ -75,9 +75,9 @@
             this.label_sessionTimeLeft.ForeColor = System.Drawing.SystemColors.ControlText;
             this.label_sessionTimeLeft.Location = new System.Drawing.Point(455, 244);
             this.label_sessionTimeLeft.Name = "label_sessionTimeLeft";
-            this.label_sessionTimeLeft.Size = new System.Drawing.Size(119, 37);
+            this.label_sessionTimeLeft.Size = new System.Drawing.Size(35, 37);
             this.label_sessionTimeLeft.TabIndex = 6;
-            this.label_sessionTimeLeft.Text = "timeleft";
+            this.label_sessionTimeLeft.Text = "0";
             // 
             // timer_1_sec
             // 

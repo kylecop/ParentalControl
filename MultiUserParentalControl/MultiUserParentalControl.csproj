@@ -47,7 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\CoinMethods.cs" />
     <Compile Include="Classes\RestoreFromMinimize.cs" />
+    <Compile Include="Classes\SqlMethods.cs" />
     <Compile Include="Classes\WindowsCommandOverrides.cs" />
     <Compile Include="MultiUserParentalControl.cs">
       <SubType>Form</SubType>

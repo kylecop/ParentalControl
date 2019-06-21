@@ -33,6 +33,7 @@ namespace MultiUserParentalControl
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            saveData.sessionLimit = 30;
             label_userName.Text = Environment.UserName;
             if (!File.Exists(ProgramData.settingsPath)) // file does not exist
             {
@@ -60,6 +61,7 @@ namespace MultiUserParentalControl
             sessionLimitArchive = saveData.sessionLimit;
 
             this.FormClosing += new FormClosingEventHandler(Form1_FormClosing);
+            //CoinMethods.setCoins("Madilynn", CoinMethods.getCoins("Madilynn")-20);
         }
 
         private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
@@ -88,9 +90,9 @@ namespace MultiUserParentalControl
         private void timer_1_sec_Tick(object sender, EventArgs e)
         {
             saveData = (SaveData)StructMethods.LoadData(ProgramData.settingsPath);
-            label_sessionTimeLeft.Text = CalcTimeLeft(saveData);
-            if (sessionLimitArchive != 0)
+            if (saveData.sessionLimit != 0)
             {
+                label_sessionTimeLeft.Text = CalcTimeLeft(saveData);
                 if (DateTime.Now > ProgramData.startTime.AddMinutes(saveData.sessionLimit))
                     WindowsCommandOverrides.WindowsLogOff();
                 if (sessionLimitArchive != saveData.sessionLimit)
