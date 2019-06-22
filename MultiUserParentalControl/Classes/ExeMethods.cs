@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -50,6 +52,15 @@ namespace ParentalControl
                 CoinMethods.decreaseCoinsForExe(numCoins, numCoinsRequired);
 
             return result;
+        }
+
+        static public void checkForAndKillProcess(string processName)
+        {
+            foreach (var process in Process.GetProcessesByName(processName))
+            {
+                process.Kill();
+                
+            }
         }
     }
 }

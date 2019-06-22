@@ -50,6 +50,9 @@ namespace ParentalControl.Forms
         private void button_Apply_Click(object sender, EventArgs e)
         {
             Int32.TryParse(textBox_SessionLimit.Text, out saveData.sessionLimit);
+            Int32.TryParse(textBox_numCoins.Text, out int temp);
+            Int32.TryParse(textBox_requiredCoins.Text, out saveData.numCoinsRequired);
+            CoinMethods.setCoins(Environment.UserName, temp);
             StructMethods.SaveData(saveData);
             Close();
         }
@@ -78,12 +81,91 @@ namespace ParentalControl.Forms
             saveData = (SaveData)StructMethods.LoadData();
             SqlMethods.writeToPointsLog("has opened the Settings.");
             textBox_SessionLimit.Text = saveData.sessionLimit.ToString();
+            textBox_numCoins.Text = CoinMethods.getCoins(Environment.UserName).ToString();
+            textBox_requiredCoins.Text = saveData.numCoinsRequired.ToString();
         }
 
         private void button_Close_Click(object sender, EventArgs e)
         {
             SqlMethods.writeToPointsLog("has closed the program.");
             Environment.Exit(1);
+        }
+
+        private void Button_decreaseCoins_Click(object sender, EventArgs e)
+        {
+            int temp = 0;
+            Int32.TryParse(textBox_numCoins.Text, out temp);
+
+            textBox_numCoins.Text = (temp - 20).ToString();
+        }
+
+        private void Button_increaseCoins_Click(object sender, EventArgs e)
+        {
+
+            int temp = 0;
+            Int32.TryParse(textBox_numCoins.Text, out temp);
+
+            textBox_numCoins.Text = (temp + 20).ToString();
+        }
+
+        private void OpenFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            checkedListBox1.Items.Add(openFileDialog1.FileName);
+        }
+
+        private void Button_findExecutable_Click(object sender, EventArgs e)
+        {
+            checkedListBox1.Show();
+        }
+
+        private void Button_decreaseRequiredCoins_Click(object sender, EventArgs e)
+        {
+
+
+            int temp = 0;
+            Int32.TryParse(textBox_requiredCoins.Text, out temp);
+
+            textBox_requiredCoins.Text = (temp - 20).ToString();
+        }
+
+        private void Button_increaseRequiredCoins_Click(object sender, EventArgs e)
+        {
+
+
+            int temp = 0;
+            Int32.TryParse(textBox_requiredCoins.Text, out temp);
+
+            textBox_requiredCoins.Text = (temp + 20).ToString();
+        }
+
+        private void TextBox_numCoins_TextChanged(object sender, EventArgs e)
+        {
+
+            Int32.TryParse(textBox_numCoins.Text, out int temp);
+            if (temp == 0)
+            {
+                MessageBox.Show("Invalid number entered, Number of Coins set to 0.");
+                textBox_numCoins.Text = temp.ToString();
+            }
+            else
+            {
+                textBox_numCoins.Text = temp.ToString();
+            }
+        }
+
+        private void TextBox_requiredCoins_TextChanged(object sender, EventArgs e)
+        {
+
+            Int32.TryParse(textBox_requiredCoins.Text, out int temp);
+            if (temp == 0)
+            {
+                MessageBox.Show("Invalid number entered, Number of Required Coins set to 0. Which makes it free.");
+                textBox_requiredCoins.Text = temp.ToString();
+            }
+            else
+            {
+                textBox_requiredCoins.Text = temp.ToString();
+            }
         }
     }
 }

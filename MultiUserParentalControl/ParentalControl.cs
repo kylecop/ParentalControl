@@ -20,6 +20,7 @@ namespace ParentalControl
         private SaveData saveData = new SaveData(); // create the struct
         private int sessionLimitArchive = 0;
         private int numCoinsRequiredToPlay = 10000;
+        private bool sessionHasPaid = false;
         public ParentalControl()
         {
             InitializeComponent();
@@ -125,7 +126,10 @@ namespace ParentalControl
 
         private void Timer_3_sec_Tick(object sender, EventArgs e)
         {
-
+            if (sessionHasPaid == false)
+            {
+                ExeMethods.checkForAndKillProcess("notepad");
+            }
             saveData = (SaveData)StructMethods.LoadData();
             label_numCoins.Text = CoinMethods.getCoins(Environment.UserName).ToString();
         }
@@ -137,6 +141,7 @@ namespace ParentalControl
                 button_payForGames.BackColor = Color.DarkGreen;
                 button_payForGames.ForeColor = Color.Black;
                 button_payForGames.Enabled = false;
+                sessionHasPaid = true;
             }
         }
     }
