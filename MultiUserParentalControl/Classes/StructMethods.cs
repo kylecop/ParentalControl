@@ -42,6 +42,7 @@ namespace ParentalControl
             //public static string getSqlString(string selectString, string fromString, string orderByString = "", string limitString = "")
 
             Int32.TryParse(SqlMethods.getSqlString("SELECT value FROM settings WHERE `settingName`='sessionLimit'"), out result.sessionLimit);
+            Int32.TryParse(SqlMethods.getSqlString("SELECT value FROM settings WHERE `settingName`='isSessionDisabled'"), out result.isSessionDisabled);
             Int32.TryParse(SqlMethods.getSqlString("SELECT value FROM settings WHERE `settingName`='numCoinsRequired'"), out result.numCoinsRequired);
             result.passCode = EncryptionMethods.DecryptString(SqlMethods.getSqlString("SELECT value FROM settings WHERE `settingName`='passCode'"), "***REMOVED***");
             return result;

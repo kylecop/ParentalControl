@@ -69,6 +69,12 @@
     <Compile Include="Classes\RestoreFromMinimize.cs" />
     <Compile Include="Classes\SqlMethods.cs" />
     <Compile Include="Classes\WindowsCommandOverrides.cs" />
+    <Compile Include="Forms\Notify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Notify.Designer.cs">
+      <DependentUpon>Notify.cs</DependentUpon>
+    </Compile>
     <Compile Include="ParentalControl.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     <Compile Include="Classes\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\StructMethods.cs" />
+    <EmbeddedResource Include="Forms\Notify.resx">
+      <DependentUpon>Notify.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ParentalControl.resx">
       <DependentUpon>ParentalControl.cs</DependentUpon>
     </EmbeddedResource>

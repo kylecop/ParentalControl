@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MultiUserParentalControl.Forms;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -58,8 +59,16 @@ namespace ParentalControl
         {
             foreach (var process in Process.GetProcessesByName(processName))
             {
-                process.Kill();
-                
+                try
+                {
+                    process.Kill();
+                    process.Kill();
+                    process.Kill();
+                }
+                catch { }
+
+                Notify formNotify = new Notify();
+                formNotify.Show();
             }
         }
     }

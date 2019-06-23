@@ -14,6 +14,7 @@ namespace ParentalControl
     public partial class Password : Form
     {
         SaveData saveData = new SaveData();
+        ProgramData programDataXfer = new ProgramData();
         public Password()
         {
             InitializeComponent();

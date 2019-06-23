@@ -14,9 +14,13 @@ namespace ParentalControl
         public int sessionLimit;
         public string passCode;
         public int numCoinsRequired;
+        public int isSessionDisabled;
     }
+    [Serializable()]
     public class ProgramData
     {
+        public static int tempSessionLimit = 0;
+        public List<String> listOfExesRequiringCoins = new List<String>();
         public static DateTime startTime = DateTime.Now;
         // folder path depends on environment but is typically c:\programdata\ParentalControl\MultiuserParentalControl\
         public static string folderPath = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + "\\" + Application.CompanyName + "\\" + Application.ProductName + "\\";

@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Serialization;
 
 namespace ParentalControl
 {
@@ -21,12 +22,16 @@ namespace ParentalControl
         private int sessionLimitArchive = 0;
         private int numCoinsRequiredToPlay = 10000;
         private bool sessionHasPaid = false;
+        ProgramData programData = new ProgramData();
+        private bool tempLogoffStatus = false;
         public ParentalControl()
         {
             InitializeComponent();
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            SqlMethods.writeToPointsLog("has logged in.");
             saveData.sessionLimit = 30;
             label_userName.Text = Environment.UserName;
             saveData = (SaveData)StructMethods.LoadData();
@@ -34,7 +39,9 @@ namespace ParentalControl
             sessionLimitArchive = saveData.sessionLimit;
 
             this.FormClosing += new FormClosingEventHandler(Form1_FormClosing);
-            //SqlMethods.writeToPointsLog("has logged in.");
+
+
+
         }
 
         private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
@@ -98,39 +105,84 @@ namespace ParentalControl
             newForm.Show();
         }
 
+        private void loadExesFromSQL()
+        {
+            string tempSerialized = SqlMethods.getSqlString("SELECT value FROM settings WHERE `settingName`='exesRequiringCoins'");
+
+            XmlSerializer xml_serializer = new XmlSerializer(typeof(ProgramData));
+            using (StringReader string_reader = new StringReader(tempSerialized))
+            {
+                ProgramData per = (ProgramData)(xml_serializer.Deserialize(string_reader));
+
+                programData.listOfExesRequiringCoins.Clear();
+                foreach (string temp in per.listOfExesRequiringCoins)
+                    programData.listOfExesRequiringCoins.Add(temp);
+            }
+        }
         private void timer_1_sec_Tick(object sender, EventArgs e)
         {
-            if (saveData.sessionLimit != 0)
+            if (!tempLogoffStatus)
             {
-                label_sessionTimeLeft.Text = CalcTimeLeft(saveData);
-                if (DateTime.Now > ProgramData.startTime.AddMinutes(saveData.sessionLimit))
+                if (ProgramData.tempSessionLimit == 0)
                 {
-                    SqlMethods.writeToPointsLog("has been forced to log off.");
-                    WindowsCommandOverrides.WindowsLogOff();
+                    if (saveData.sessionLimit != 0)
+                    {
+                        label_sessionTimeLeft.Text = CalcTimeLeft(saveData);
+                        if (DateTime.Now > ProgramData.startTime.AddMinutes(saveData.sessionLimit))
+                        {
+                            tempLogoffStatus = true;
+                            SqlMethods.writeToPointsLog("has been forced to log off.");
+                            WindowsCommandOverrides.WindowsLogOff();
+                        }
+                    }
+
                 }
-                if (sessionLimitArchive != saveData.sessionLimit)
+                else
                 {
-                    sessionLimitArchive = saveData.sessionLimit;
-                    ProgramData.startTime = DateTime.Now;
+                    label_sessionTimeLeft.Text = CalcTimeLeft(saveData);
+                    if (DateTime.Now > ProgramData.startTime.AddMinutes(ProgramData.tempSessionLimit))
+                    {
+                        tempLogoffStatus = true;
+                        SqlMethods.writeToPointsLog("has been forced to log off.");
+                        WindowsCommandOverrides.WindowsLogOff();
+                    }
                 }
             }
         }
         private string CalcTimeLeft(SaveData saveData)
         {
-            string minutesLeft = (ProgramData.startTime.AddMinutes(saveData.sessionLimit) - DateTime.Now).Minutes.ToString();
-            string secondsLeftString = (ProgramData.startTime.AddMinutes(saveData.sessionLimit) - DateTime.Now).Seconds.ToString();
-            if ((ProgramData.startTime.AddMinutes(saveData.sessionLimit) - DateTime.Now).Seconds < 10)
-                secondsLeftString = "0" + (ProgramData.startTime.AddMinutes(saveData.sessionLimit) - DateTime.Now).Seconds.ToString();
-            return minutesLeft + ":" + secondsLeftString;
+            string minutesLeft = "",secondsLeftString = "", hoursLeft = "";
+            if(ProgramData.tempSessionLimit == 0)
+            {
+                hoursLeft = (ProgramData.startTime.AddMinutes(saveData.sessionLimit) - DateTime.Now).Hours.ToString();
+                minutesLeft = (ProgramData.startTime.AddMinutes(saveData.sessionLimit) - DateTime.Now).Minutes.ToString();
+                secondsLeftString = (ProgramData.startTime.AddMinutes(saveData.sessionLimit) - DateTime.Now).Seconds.ToString();
+                if ((ProgramData.startTime.AddMinutes(saveData.sessionLimit) - DateTime.Now).Seconds < 10)
+                    secondsLeftString = "0" + (ProgramData.startTime.AddMinutes(saveData.sessionLimit) - DateTime.Now).Seconds.ToString();
+            }
+            else
+            {
+                hoursLeft = (ProgramData.startTime.AddMinutes(ProgramData.tempSessionLimit) - DateTime.Now).Hours.ToString();
+                minutesLeft = (ProgramData.startTime.AddMinutes(ProgramData.tempSessionLimit) - DateTime.Now).Minutes.ToString();
+                secondsLeftString = (ProgramData.startTime.AddMinutes(ProgramData.tempSessionLimit) - DateTime.Now).Seconds.ToString();
+                if ((ProgramData.startTime.AddMinutes(ProgramData.tempSessionLimit) - DateTime.Now).Seconds < 10)
+                    secondsLeftString = "0" + (ProgramData.startTime.AddMinutes(ProgramData.tempSessionLimit) - DateTime.Now).Seconds.ToString();
+            }
+            return hoursLeft + ":" + minutesLeft + ":" + secondsLeftString;
         }
 
         private void Timer_3_sec_Tick(object sender, EventArgs e)
         {
             if (sessionHasPaid == false)
             {
-                ExeMethods.checkForAndKillProcess("notepad");
+                loadExesFromSQL();
+                foreach(string temp in programData.listOfExesRequiringCoins)
+                    ExeMethods.checkForAndKillProcess(temp);
             }
             saveData = (SaveData)StructMethods.LoadData();
+            if (saveData.isSessionDisabled == 1)
+                WindowsCommandOverrides.WindowsLogOff();
+
             label_numCoins.Text = CoinMethods.getCoins(Environment.UserName).ToString();
         }
 

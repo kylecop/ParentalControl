@@ -47,11 +47,19 @@
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.button_findExecutable = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button_checkedListBox1Delete = new System.Windows.Forms.Button();
             this.button_increaseRequiredCoins = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.button_decreaseRequiredCoins = new System.Windows.Forms.Button();
             this.textBox_requiredCoins = new System.Windows.Forms.TextBox();
+            this.button_newCheckedListBox1Item = new System.Windows.Forms.Button();
+            this.textBox_checkedListBoxItemText = new System.Windows.Forms.TextBox();
+            this.button_addNewExe = new System.Windows.Forms.Button();
+            this.button_tempSessionLimitIncrease = new System.Windows.Forms.Button();
+            this.label_tempSessionLimit = new System.Windows.Forms.Label();
+            this.button_tempSessionLimitDecrease = new System.Windows.Forms.Button();
+            this.textBox_tempSessionLimit = new System.Windows.Forms.TextBox();
+            this.button_countdownReset = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // maskedTextBox_newPIN
@@ -214,13 +222,15 @@
             // 
             // checkedListBox1
             // 
+            this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(12, 206);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.ScrollAlwaysVisible = true;
-            this.checkedListBox1.Size = new System.Drawing.Size(468, 284);
+            this.checkedListBox1.Size = new System.Drawing.Size(468, 228);
             this.checkedListBox1.Sorted = true;
             this.checkedListBox1.TabIndex = 14;
+            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.CheckedListBox1_SelectedIndexChanged);
             // 
             // openFileDialog1
             // 
@@ -230,7 +240,7 @@
             // 
             // button_findExecutable
             // 
-            this.button_findExecutable.Location = new System.Drawing.Point(250, 496);
+            this.button_findExecutable.Location = new System.Drawing.Point(250, 440);
             this.button_findExecutable.Name = "button_findExecutable";
             this.button_findExecutable.Size = new System.Drawing.Size(230, 51);
             this.button_findExecutable.TabIndex = 15;
@@ -238,19 +248,20 @@
             this.button_findExecutable.UseVisualStyleBackColor = true;
             this.button_findExecutable.Click += new System.EventHandler(this.Button_findExecutable_Click);
             // 
-            // button2
+            // button_checkedListBox1Delete
             // 
-            this.button2.Location = new System.Drawing.Point(15, 496);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(229, 51);
-            this.button2.TabIndex = 16;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button_checkedListBox1Delete.Location = new System.Drawing.Point(149, 440);
+            this.button_checkedListBox1Delete.Name = "button_checkedListBox1Delete";
+            this.button_checkedListBox1Delete.Size = new System.Drawing.Size(95, 51);
+            this.button_checkedListBox1Delete.TabIndex = 16;
+            this.button_checkedListBox1Delete.Text = "Delete";
+            this.button_checkedListBox1Delete.UseVisualStyleBackColor = true;
+            this.button_checkedListBox1Delete.Click += new System.EventHandler(this.Button_checkedListBox1Delete_Click);
             // 
             // button_increaseRequiredCoins
             // 
             this.button_increaseRequiredCoins.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_increaseRequiredCoins.Location = new System.Drawing.Point(363, 75);
+            this.button_increaseRequiredCoins.Location = new System.Drawing.Point(363, 134);
             this.button_increaseRequiredCoins.Name = "button_increaseRequiredCoins";
             this.button_increaseRequiredCoins.Size = new System.Drawing.Size(61, 55);
             this.button_increaseRequiredCoins.TabIndex = 20;
@@ -261,7 +272,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(33, 96);
+            this.label3.Location = new System.Drawing.Point(33, 155);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(183, 25);
             this.label3.TabIndex = 17;
@@ -271,7 +282,7 @@
             // button_decreaseRequiredCoins
             // 
             this.button_decreaseRequiredCoins.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_decreaseRequiredCoins.Location = new System.Drawing.Point(222, 75);
+            this.button_decreaseRequiredCoins.Location = new System.Drawing.Point(222, 134);
             this.button_decreaseRequiredCoins.Name = "button_decreaseRequiredCoins";
             this.button_decreaseRequiredCoins.Size = new System.Drawing.Size(61, 55);
             this.button_decreaseRequiredCoins.TabIndex = 18;
@@ -282,22 +293,109 @@
             // textBox_requiredCoins
             // 
             this.textBox_requiredCoins.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_requiredCoins.Location = new System.Drawing.Point(289, 78);
+            this.textBox_requiredCoins.Location = new System.Drawing.Point(289, 137);
             this.textBox_requiredCoins.Name = "textBox_requiredCoins";
             this.textBox_requiredCoins.Size = new System.Drawing.Size(68, 50);
             this.textBox_requiredCoins.TabIndex = 19;
             this.textBox_requiredCoins.TextChanged += new System.EventHandler(this.TextBox_requiredCoins_TextChanged);
+            // 
+            // button_newCheckedListBox1Item
+            // 
+            this.button_newCheckedListBox1Item.Location = new System.Drawing.Point(12, 440);
+            this.button_newCheckedListBox1Item.Name = "button_newCheckedListBox1Item";
+            this.button_newCheckedListBox1Item.Size = new System.Drawing.Size(131, 51);
+            this.button_newCheckedListBox1Item.TabIndex = 21;
+            this.button_newCheckedListBox1Item.Text = "New";
+            this.button_newCheckedListBox1Item.UseVisualStyleBackColor = true;
+            // 
+            // textBox_checkedListBoxItemText
+            // 
+            this.textBox_checkedListBoxItemText.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_checkedListBoxItemText.Location = new System.Drawing.Point(12, 497);
+            this.textBox_checkedListBoxItemText.Name = "textBox_checkedListBoxItemText";
+            this.textBox_checkedListBoxItemText.Size = new System.Drawing.Size(368, 50);
+            this.textBox_checkedListBoxItemText.TabIndex = 22;
+            this.textBox_checkedListBoxItemText.TextChanged += new System.EventHandler(this.TextBox_checkedListBoxItemText_TextChanged);
+            // 
+            // button_addNewExe
+            // 
+            this.button_addNewExe.Location = new System.Drawing.Point(385, 496);
+            this.button_addNewExe.Name = "button_addNewExe";
+            this.button_addNewExe.Size = new System.Drawing.Size(95, 51);
+            this.button_addNewExe.TabIndex = 23;
+            this.button_addNewExe.Text = "Add";
+            this.button_addNewExe.UseVisualStyleBackColor = true;
+            this.button_addNewExe.Click += new System.EventHandler(this.Button_addNewExe_Click);
+            // 
+            // button_tempSessionLimitIncrease
+            // 
+            this.button_tempSessionLimitIncrease.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_tempSessionLimitIncrease.Location = new System.Drawing.Point(363, 73);
+            this.button_tempSessionLimitIncrease.Name = "button_tempSessionLimitIncrease";
+            this.button_tempSessionLimitIncrease.Size = new System.Drawing.Size(61, 55);
+            this.button_tempSessionLimitIncrease.TabIndex = 27;
+            this.button_tempSessionLimitIncrease.Text = "+";
+            this.button_tempSessionLimitIncrease.UseVisualStyleBackColor = true;
+            this.button_tempSessionLimitIncrease.Click += new System.EventHandler(this.Button_tempSessionLimitIncrease_Click);
+            // 
+            // label_tempSessionLimit
+            // 
+            this.label_tempSessionLimit.AutoSize = true;
+            this.label_tempSessionLimit.Location = new System.Drawing.Point(4, 94);
+            this.label_tempSessionLimit.Name = "label_tempSessionLimit";
+            this.label_tempSessionLimit.Size = new System.Drawing.Size(212, 25);
+            this.label_tempSessionLimit.TabIndex = 24;
+            this.label_tempSessionLimit.Text = "Temp Session Limit: ";
+            this.label_tempSessionLimit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button_tempSessionLimitDecrease
+            // 
+            this.button_tempSessionLimitDecrease.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button_tempSessionLimitDecrease.Location = new System.Drawing.Point(222, 73);
+            this.button_tempSessionLimitDecrease.Name = "button_tempSessionLimitDecrease";
+            this.button_tempSessionLimitDecrease.Size = new System.Drawing.Size(61, 55);
+            this.button_tempSessionLimitDecrease.TabIndex = 25;
+            this.button_tempSessionLimitDecrease.Text = "-";
+            this.button_tempSessionLimitDecrease.UseVisualStyleBackColor = true;
+            this.button_tempSessionLimitDecrease.Click += new System.EventHandler(this.Button_tempSessionLimitDecrease_Click);
+            // 
+            // textBox_tempSessionLimit
+            // 
+            this.textBox_tempSessionLimit.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_tempSessionLimit.Location = new System.Drawing.Point(289, 76);
+            this.textBox_tempSessionLimit.Name = "textBox_tempSessionLimit";
+            this.textBox_tempSessionLimit.Size = new System.Drawing.Size(68, 50);
+            this.textBox_tempSessionLimit.TabIndex = 26;
+            this.textBox_tempSessionLimit.TextChanged += new System.EventHandler(this.TextBox_tempSessionLimit_TextChanged);
+            // 
+            // button_countdownReset
+            // 
+            this.button_countdownReset.Location = new System.Drawing.Point(448, 12);
+            this.button_countdownReset.Name = "button_countdownReset";
+            this.button_countdownReset.Size = new System.Drawing.Size(230, 50);
+            this.button_countdownReset.TabIndex = 28;
+            this.button_countdownReset.Text = "Reset Countdown";
+            this.button_countdownReset.UseVisualStyleBackColor = true;
+            this.button_countdownReset.Click += new System.EventHandler(this.Button_countdownReset_Click);
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(970, 662);
+            this.Controls.Add(this.button_countdownReset);
+            this.Controls.Add(this.button_tempSessionLimitIncrease);
+            this.Controls.Add(this.label_tempSessionLimit);
+            this.Controls.Add(this.button_tempSessionLimitDecrease);
+            this.Controls.Add(this.textBox_tempSessionLimit);
+            this.Controls.Add(this.button_addNewExe);
+            this.Controls.Add(this.textBox_checkedListBoxItemText);
+            this.Controls.Add(this.button_newCheckedListBox1Item);
             this.Controls.Add(this.button_increaseRequiredCoins);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button_decreaseRequiredCoins);
             this.Controls.Add(this.textBox_requiredCoins);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button_checkedListBox1Delete);
             this.Controls.Add(this.button_findExecutable);
             this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.button_increaseCoins);
@@ -345,10 +443,18 @@
         private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.Button button_findExecutable;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button_checkedListBox1Delete;
         private System.Windows.Forms.Button button_increaseRequiredCoins;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button_decreaseRequiredCoins;
         private System.Windows.Forms.TextBox textBox_requiredCoins;
+        private System.Windows.Forms.Button button_newCheckedListBox1Item;
+        private System.Windows.Forms.TextBox textBox_checkedListBoxItemText;
+        private System.Windows.Forms.Button button_addNewExe;
+        private System.Windows.Forms.Button button_tempSessionLimitIncrease;
+        private System.Windows.Forms.Label label_tempSessionLimit;
+        private System.Windows.Forms.Button button_tempSessionLimitDecrease;
+        private System.Windows.Forms.TextBox textBox_tempSessionLimit;
+        private System.Windows.Forms.Button button_countdownReset;
     }
 }
