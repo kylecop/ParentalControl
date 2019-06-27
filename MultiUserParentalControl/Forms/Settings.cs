@@ -163,7 +163,7 @@ namespace ParentalControl.Forms
             int temp = 0;
             Int32.TryParse(textBox_requiredCoins.Text, out temp);
 
-            textBox_requiredCoins.Text = (temp - 20).ToString();
+            textBox_requiredCoins.Text = (temp - 1).ToString();
         }
 
         private void Button_increaseRequiredCoins_Click(object sender, EventArgs e)
@@ -173,7 +173,7 @@ namespace ParentalControl.Forms
             int temp = 0;
             Int32.TryParse(textBox_requiredCoins.Text, out temp);
 
-            textBox_requiredCoins.Text = (temp + 20).ToString();
+            textBox_requiredCoins.Text = (temp + 1).ToString();
         }
 
         private void TextBox_numCoins_TextChanged(object sender, EventArgs e)
@@ -234,22 +234,14 @@ namespace ParentalControl.Forms
             int temp = 0;
             Int32.TryParse(textBox_tempSessionLimit.Text, out temp);
 
-            textBox_tempSessionLimit.Text = (temp - 20).ToString();
+            textBox_tempSessionLimit.Text = (temp - 1).ToString();
         }
 
         private void TextBox_tempSessionLimit_TextChanged(object sender, EventArgs e)
         {
 
             Int32.TryParse(textBox_tempSessionLimit.Text, out int temp);
-            if (temp == 0)
-            {
-                MessageBox.Show("Invalid number entered, Temporary Session Limit set to 0. Which makes it disabled.");
-                textBox_tempSessionLimit.Text = temp.ToString();
-            }
-            else
-            {
-                textBox_tempSessionLimit.Text = temp.ToString();
-            }
+            textBox_tempSessionLimit.Text = temp.ToString();
         }
 
         private void Button_tempSessionLimitIncrease_Click(object sender, EventArgs e)
@@ -259,7 +251,7 @@ namespace ParentalControl.Forms
             int temp = 0;
             Int32.TryParse(textBox_tempSessionLimit.Text, out temp);
 
-            textBox_tempSessionLimit.Text = (temp + 20).ToString();
+            textBox_tempSessionLimit.Text = (temp + 1).ToString();
         }
 
         private void Button_countdownReset_Click(object sender, EventArgs e)
