@@ -30,7 +30,7 @@ namespace ParentalControl
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            //test
             SqlMethods.writeToPointsLog("has logged in.");
             saveData.sessionLimit = 30;
             label_userName.Text = Environment.UserName;
