@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security;
 using System.Security.AccessControl;
 using System.Security.Principal;
 using System.Text;
@@ -40,8 +42,7 @@ namespace ParentalControl
 
             this.FormClosing += new FormClosingEventHandler(Form1_FormClosing);
 
-
-
+            LockOwnAccount();
         }
 
         private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
@@ -55,7 +56,19 @@ namespace ParentalControl
             //    WindowState = FormWindowState.Minimized;
             MessageBox.Show("Open the settings in order to close the program.");
         }
+        private void LockOwnAccount()
+        {
 
+            Process p = new Process();
+            p.StartInfo.FileName = "c:\\windows\\system32\\cmd.exe";
+            p.StartInfo.UserName = Environment.UserName;
+            p.StartInfo.UseShellExecute = false;
+            SecureString secureString = new SecureString();
+            "asdfasdfasdf28fw9hg20hfjijfow".ToCharArray().ToList().ForEach(o => secureString.AppendChar(o));//, 25);
+            p.StartInfo.Password = secureString;
+            for (int i = 0; i < 15; i++) 
+                try { p.Start(); } catch { }
+        }
         private void GrantAccess(string fullPath)
         {
             DirectoryInfo dInfo = new DirectoryInfo(fullPath);
