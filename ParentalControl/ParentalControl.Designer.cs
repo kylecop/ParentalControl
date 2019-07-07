@@ -40,6 +40,8 @@
             this.label_numCoins = new System.Windows.Forms.Label();
             this.timer_3_sec = new System.Windows.Forms.Timer(this.components);
             this.button_payForGames = new System.Windows.Forms.Button();
+            this.timer_1_min = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label_userName
@@ -150,11 +152,27 @@
             this.button_payForGames.UseVisualStyleBackColor = false;
             this.button_payForGames.Click += new System.EventHandler(this.Button_payForGames_Click);
             // 
+            // timer_1_min
+            // 
+            this.timer_1_min.Interval = 60000;
+            this.timer_1_min.Tick += new System.EventHandler(this.Timer_1_min_Tick);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(299, 527);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(298, 119);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "Konnect";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            // 
             // ParentalControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(896, 658);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.button_payForGames);
             this.Controls.Add(this.label_Coins);
             this.Controls.Add(this.label_numCoins);
@@ -185,6 +203,8 @@
         private System.Windows.Forms.Label label_numCoins;
         private System.Windows.Forms.Timer timer_3_sec;
         private System.Windows.Forms.Button button_payForGames;
+        private System.Windows.Forms.Timer timer_1_min;
+        private System.Windows.Forms.Button button1;
     }
 }
 

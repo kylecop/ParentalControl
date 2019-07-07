@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MultiUserParentalControl.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -43,6 +44,9 @@ namespace ParentalControl
             this.FormClosing += new FormClosingEventHandler(Form1_FormClosing);
 
             LockOwnAccount();
+
+            Form konnect = new Konnect();
+            konnect.Show();
         }
 
         private void Form1_FormClosing(Object sender, FormClosingEventArgs e)
@@ -201,13 +205,42 @@ namespace ParentalControl
 
         private void Button_payForGames_Click(object sender, EventArgs e)
         {
-            if(ExeMethods.payForExe(CoinMethods.getCoins(Environment.UserName), numCoinsRequiredToPlay, saveData.sessionLimit) == true)
+            int numCoins = CoinMethods.getCoins(Environment.UserName);
+            if (numCoins >= 1)
+            //if(ExeMethods.payForExe(CoinMethods.getCoins(Environment.UserName), numCoinsRequiredToPlay, saveData.sessionLimit) == true)
             {
+                timer_1_min.Enabled = true;
                 button_payForGames.BackColor = Color.DarkGreen;
                 button_payForGames.ForeColor = Color.Black;
                 button_payForGames.Enabled = false;
                 sessionHasPaid = true;
             }
+        }
+
+        private void Timer_1_min_Tick(object sender, EventArgs e)
+        {
+
+            if (sessionHasPaid == true)
+            {
+                int numCoins = CoinMethods.getCoins(Environment.UserName);
+                if (numCoins >= 1)
+                    CoinMethods.decreaseCoinsForExe(numCoins, 1);
+                else
+                {
+                    sessionHasPaid = false;
+                    button_payForGames.BackColor = Color.DarkRed;
+                    button_payForGames.ForeColor = Color.White;
+                    button_payForGames.Enabled = true;
+                    timer_1_min.Enabled = false;
+                }
+            }
+        }
+
+        private void Button1_Click(object sender, EventArgs e)
+        {
+
+            Form konnect = new Konnect();
+            konnect.Show();
         }
     }
 }

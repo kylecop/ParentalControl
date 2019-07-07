@@ -106,7 +106,7 @@ namespace ParentalControl
         }
         public static void decreaseCoinsForExe(int numCoins, int numCoinsRequired)
         {
-            SqlMethods.writeToPointsLog("has spent " + numCoinsRequired.ToString() + " coins.");
+            //SqlMethods.writeToPointsLog("has spent " + numCoinsRequired.ToString() + " coins.");
             setCoins(Environment.UserName, numCoins - numCoinsRequired);
         }
     }
