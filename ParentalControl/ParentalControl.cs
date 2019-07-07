@@ -206,6 +206,7 @@ namespace ParentalControl
         private void Button_payForGames_Click(object sender, EventArgs e)
         {
             int numCoins = CoinMethods.getCoins(Environment.UserName);
+            SqlMethods.writeToPointsLog("has clicked pay for games. " + numCoins + " Coins.");
             if (numCoins >= 1)
             //if(ExeMethods.payForExe(CoinMethods.getCoins(Environment.UserName), numCoinsRequiredToPlay, saveData.sessionLimit) == true)
             {
