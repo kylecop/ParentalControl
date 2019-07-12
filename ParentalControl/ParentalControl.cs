@@ -205,7 +205,7 @@ namespace ParentalControl
 
         private void isSessionDisabled()
         {
-            if (saveData.isSessionDisabled == 1)
+            if (saveData.isSessionDisabled == 0)
             { 
                 button_payForGames.BackColor = Color.DarkGreen;
                 button_payForGames.ForeColor = Color.Black;
