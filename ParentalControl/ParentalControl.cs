@@ -197,12 +197,27 @@ namespace ParentalControl
                     ExeMethods.checkForAndKillProcess(temp);
             }
             saveData = (SaveData)StructMethods.LoadData();
-            if (saveData.isSessionDisabled == 1)
-                WindowsCommandOverrides.WindowsLogOff();
+
+            isSessionDisabled();
 
             label_numCoins.Text = CoinMethods.getCoins(Environment.UserName).ToString();
         }
 
+        private void isSessionDisabled()
+        {
+            if (saveData.isSessionDisabled == 1)
+            { 
+                button_payForGames.BackColor = Color.DarkGreen;
+                button_payForGames.ForeColor = Color.Black;
+                button_payForGames.Enabled = true;
+                sessionHasPaid = true;
+            }else {
+                button_payForGames.BackColor = Color.DarkRed;
+                button_payForGames.ForeColor = Color.White;
+                button_payForGames.Enabled = false;
+                sessionHasPaid = false;
+            }
+        }
         private void Button_payForGames_Click(object sender, EventArgs e)
         {
             int numCoins = CoinMethods.getCoins(Environment.UserName);
