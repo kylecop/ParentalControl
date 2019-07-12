@@ -7,6 +7,7 @@ Suggested windows configuration:
 3. Disable command prompt and powershell
 4. Use applocker
 5. launch application on start up
+6. logon times command; net user username /times:Su-Sa,7am-8pm
 
 The default PIN is 9999.
 
