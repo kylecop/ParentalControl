@@ -10,7 +10,7 @@ namespace ParentalControl
 {
     class SqlMethods
     {
-        static string serverAddress = "192.168.20.250";
+        static string serverAddress = "127.0.0.1";
         static string userName = "kyle";
         static string userPass = "***REMOVED***";
         static string dbName = "beatspoints";
