@@ -196,7 +196,6 @@ namespace ParentalControl
                 foreach(string temp in programData.listOfExesRequiringCoins)
                     ExeMethods.checkForAndKillProcess(temp);
             }
-            //saveData = (SaveData)StructMethods.LoadData();
 
             isSessionDisabled();
 
@@ -206,13 +205,8 @@ namespace ParentalControl
         private void isSessionDisabled()
         {
             saveData = (SaveData)StructMethods.LoadData();
-            if (saveData.isSessionDisabled == 0)
-            { 
-                button_payForGames.BackColor = Color.DarkGreen;
-                button_payForGames.ForeColor = Color.Black;
-                button_payForGames.Enabled = true;
-                //sessionHasPaid = true;
-            }else {
+            if (saveData.isSessionDisabled == 1)
+            {
                 button_payForGames.BackColor = Color.DarkRed;
                 button_payForGames.ForeColor = Color.White;
                 button_payForGames.Enabled = false;
