@@ -251,8 +251,8 @@ namespace ParentalControl
             {
                 SqlMethods.writeToPointsLog("has clicked pay for games. " + numCoins + " Coins.");
                 timer_1_min.Enabled = true;
-                button_payForGames.Enabled = false;
-                button_StartGames.Enabled = true;
+                button_payForGames.Enabled = true;
+                button_StartGames.Enabled = false;
                 sessionHasPaid = true;
             }
 
