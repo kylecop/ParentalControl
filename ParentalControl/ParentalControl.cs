@@ -207,24 +207,7 @@ namespace ParentalControl
             saveData = (SaveData)StructMethods.LoadData();
             if (saveData.isSessionDisabled == 1)
             {
-                button_payForGames.BackColor = Color.DarkRed;
-                button_payForGames.ForeColor = Color.White;
-                button_payForGames.Enabled = false;
-                sessionHasPaid = false;
-            }
-        }
-        private void Button_payForGames_Click(object sender, EventArgs e)
-        {
-            int numCoins = CoinMethods.getCoins(Environment.UserName);
-            if (numCoins >= 1)
-            //if(ExeMethods.payForExe(CoinMethods.getCoins(Environment.UserName), numCoinsRequiredToPlay, saveData.sessionLimit) == true)
-            {
-                SqlMethods.writeToPointsLog("has clicked pay for games. " + numCoins + " Coins.");
-                timer_1_min.Enabled = true;
-                button_payForGames.BackColor = Color.DarkGreen;
-                button_payForGames.ForeColor = Color.Black;
-                button_payForGames.Enabled = false;
-                sessionHasPaid = true;
+
             }
         }
 
@@ -236,14 +219,7 @@ namespace ParentalControl
                 int numCoins = CoinMethods.getCoins(Environment.UserName);
                 if (numCoins >= 1)
                     CoinMethods.decreaseCoinsForExe(numCoins, 1);
-                else
-                {
-                    sessionHasPaid = false;
-                    button_payForGames.BackColor = Color.DarkRed;
-                    button_payForGames.ForeColor = Color.White;
-                    button_payForGames.Enabled = true;
-                    timer_1_min.Enabled = false;
-                }
+                
             }
         }
 
@@ -252,6 +228,34 @@ namespace ParentalControl
 
             Form konnect = new Konnect();
             konnect.Show();
+        }
+        private void Button_payForGames_Click(object sender, EventArgs e)
+        {
+            int numCoins = CoinMethods.getCoins(Environment.UserName);
+            if (numCoins >= 1)
+            //if(ExeMethods.payForExe(CoinMethods.getCoins(Environment.UserName), numCoinsRequiredToPlay, saveData.sessionLimit) == true)
+            {
+                SqlMethods.writeToPointsLog("has clicked stop paying for games. " + numCoins + " Coins.");
+                timer_1_min.Enabled = false;
+                button_payForGames.Enabled = false;
+                button_StartGames.Enabled = true;
+                sessionHasPaid = false;
+            }
+        }
+
+        private void Button_StartGames_Click(object sender, EventArgs e)
+        {
+            int numCoins = CoinMethods.getCoins(Environment.UserName);
+            if (numCoins >= 1)
+            //if(ExeMethods.payForExe(CoinMethods.getCoins(Environment.UserName), numCoinsRequiredToPlay, saveData.sessionLimit) == true)
+            {
+                SqlMethods.writeToPointsLog("has clicked pay for games. " + numCoins + " Coins.");
+                timer_1_min.Enabled = true;
+                button_payForGames.Enabled = false;
+                button_StartGames.Enabled = true;
+                sessionHasPaid = true;
+            }
+
         }
     }
 }
