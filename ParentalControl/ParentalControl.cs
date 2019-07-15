@@ -196,6 +196,18 @@ namespace ParentalControl
                 foreach(string temp in programData.listOfExesRequiringCoins)
                     ExeMethods.checkForAndKillProcess(temp);
             }
+            else
+            {
+                int numCoins = CoinMethods.getCoins(Environment.UserName);
+                if (numCoins < 1)
+                {
+                    SqlMethods.writeToPointsLog("has stopped paying for games. " + numCoins + " Coins.");
+                    timer_1_min.Enabled = false;
+                    button_payForGames.Enabled = false;
+                    button_StartGames.Enabled = true;
+                    sessionHasPaid = false;
+                }
+            }
 
             isSessionDisabled();
 
@@ -208,6 +220,15 @@ namespace ParentalControl
             if (saveData.isSessionDisabled == 1)
             {
 
+                int numCoins = CoinMethods.getCoins(Environment.UserName);
+                //if(ExeMethods.payForExe(CoinMethods.getCoins(Environment.UserName), numCoinsRequiredToPlay, saveData.sessionLimit) == true)
+                {
+                    SqlMethods.writeToPointsLog("has stopped paying for games. " + numCoins + " Coins.");
+                    timer_1_min.Enabled = false;
+                    button_payForGames.Enabled = false;
+                    button_StartGames.Enabled = true;
+                    sessionHasPaid = false;
+                }
             }
         }
 
@@ -232,15 +253,11 @@ namespace ParentalControl
         private void Button_payForGames_Click(object sender, EventArgs e)
         {
             int numCoins = CoinMethods.getCoins(Environment.UserName);
-            if (numCoins >= 1)
-            //if(ExeMethods.payForExe(CoinMethods.getCoins(Environment.UserName), numCoinsRequiredToPlay, saveData.sessionLimit) == true)
-            {
-                SqlMethods.writeToPointsLog("has clicked stop paying for games. " + numCoins + " Coins.");
-                timer_1_min.Enabled = false;
-                button_payForGames.Enabled = false;
-                button_StartGames.Enabled = true;
-                sessionHasPaid = false;
-            }
+            SqlMethods.writeToPointsLog("has stop paying for games. " + numCoins + " Coins.");
+            timer_1_min.Enabled = false;
+            button_payForGames.Enabled = false;
+            button_StartGames.Enabled = true;
+            sessionHasPaid = false;
         }
 
         private void Button_StartGames_Click(object sender, EventArgs e)
