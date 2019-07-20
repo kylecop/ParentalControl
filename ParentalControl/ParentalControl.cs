@@ -223,7 +223,7 @@ namespace ParentalControl
                 int numCoins = CoinMethods.getCoins(Environment.UserName);
                 //if(ExeMethods.payForExe(CoinMethods.getCoins(Environment.UserName), numCoinsRequiredToPlay, saveData.sessionLimit) == true)
                 {
-                    SqlMethods.writeToPointsLog("has stopped paying for games. " + numCoins + " Coins.");
+                    //SqlMethods.writeToPointsLog("has stopped paying for games. " + numCoins + " Coins.");
                     timer_1_min.Enabled = false;
                     button_payForGames.Enabled = false;
                     button_StartGames.Enabled = true;
