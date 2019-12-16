@@ -12,7 +12,7 @@ namespace ParentalControl
     {
         public static void SaveData(SaveData saveData)
         {
-            SqlMethods.updateSqlString("settings", EncryptionMethods.EncryptString(saveData.passCode.ToString(), "***REMOVED***"), "passCode");
+            SqlMethods.updateSqlString("settings", EncryptionMethods.EncryptString(saveData.passCode.ToString(), "ivynk67104"), "passCode");
             SqlMethods.updateSqlString("settings", saveData.sessionLimit.ToString(), "sessionLimit");
             SqlMethods.updateSqlString("settings", saveData.numCoinsRequired.ToString(), "numCoinsRequired");
         }
@@ -44,7 +44,7 @@ namespace ParentalControl
             Int32.TryParse(SqlMethods.getSqlString("SELECT value FROM settings WHERE `settingName`='sessionLimit'"), out result.sessionLimit);
             Int32.TryParse(SqlMethods.getSqlString("SELECT value FROM settings WHERE `settingName`='isSessionDisabled'"), out result.isSessionDisabled);
             Int32.TryParse(SqlMethods.getSqlString("SELECT value FROM settings WHERE `settingName`='numCoinsRequired'"), out result.numCoinsRequired);
-            result.passCode = EncryptionMethods.DecryptString(SqlMethods.getSqlString("SELECT value FROM settings WHERE `settingName`='passCode'"), "***REMOVED***");
+            result.passCode = EncryptionMethods.DecryptString(SqlMethods.getSqlString("SELECT value FROM settings WHERE `settingName`='passCode'"), "ivynk67104");
             return result;
         }
     }
