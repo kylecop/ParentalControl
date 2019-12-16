@@ -1,0 +1,2 @@
+- name: Check password
+  uses: AlicanAkkus/pinder-action@3
