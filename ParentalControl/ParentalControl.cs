@@ -34,7 +34,9 @@ namespace ParentalControl
         private void Form1_Load(object sender, EventArgs e)
         {
             //test
-            SqlMethods.writeToPointsLog("has logged in.");
+            //SqlMethods.writeToPointsLog("has logged in.");
+            string testenc = EncryptionMethods.EncryptString("9999","2bad4you");
+            MessageBox.Show(testenc);
             saveData.sessionLimit = 30;
             label_userName.Text = Environment.UserName;
             saveData = (SaveData)StructMethods.LoadData();
