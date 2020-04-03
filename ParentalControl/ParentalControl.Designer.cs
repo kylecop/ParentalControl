@@ -59,7 +59,7 @@
             // button_Logoff
             // 
             this.button_Logoff.Location = new System.Drawing.Point(805, 653);
-            this.button_Logoff.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button_Logoff.Margin = new System.Windows.Forms.Padding(5);
             this.button_Logoff.Name = "button_Logoff";
             this.button_Logoff.Size = new System.Drawing.Size(373, 148);
             this.button_Logoff.TabIndex = 8;
@@ -70,7 +70,7 @@
             // button_settings
             // 
             this.button_settings.Location = new System.Drawing.Point(976, 14);
-            this.button_settings.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button_settings.Margin = new System.Windows.Forms.Padding(5);
             this.button_settings.Name = "button_settings";
             this.button_settings.Size = new System.Drawing.Size(203, 64);
             this.button_settings.TabIndex = 7;
@@ -154,7 +154,7 @@
             this.button_payForGames.BackColor = System.Drawing.Color.Maroon;
             this.button_payForGames.ForeColor = System.Drawing.Color.White;
             this.button_payForGames.Location = new System.Drawing.Point(16, 734);
-            this.button_payForGames.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button_payForGames.Margin = new System.Windows.Forms.Padding(5);
             this.button_payForGames.Name = "button_payForGames";
             this.button_payForGames.Size = new System.Drawing.Size(373, 67);
             this.button_payForGames.TabIndex = 14;
@@ -170,13 +170,12 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(400, 653);
-            this.button1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button1.Margin = new System.Windows.Forms.Padding(5);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(397, 148);
             this.button1.TabIndex = 15;
-            this.button1.Text = "Konnect";
+            this.button1.Text = "Info";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
             this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // button_StartGames
@@ -184,7 +183,7 @@
             this.button_StartGames.BackColor = System.Drawing.Color.DarkGreen;
             this.button_StartGames.ForeColor = System.Drawing.Color.White;
             this.button_StartGames.Location = new System.Drawing.Point(16, 658);
-            this.button_StartGames.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button_StartGames.Margin = new System.Windows.Forms.Padding(5);
             this.button_StartGames.Name = "button_StartGames";
             this.button_StartGames.Size = new System.Drawing.Size(373, 67);
             this.button_StartGames.TabIndex = 16;
@@ -208,7 +207,7 @@
             this.Controls.Add(this.button_Logoff);
             this.Controls.Add(this.button_settings);
             this.Controls.Add(this.label_sessionTimeLeft);
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "ParentalControl";
             this.Text = "MultiUserParentalControl";
             this.Load += new System.EventHandler(this.Form1_Load);

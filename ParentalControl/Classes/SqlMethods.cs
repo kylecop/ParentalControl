@@ -12,7 +12,7 @@ namespace ParentalControl
     {
         static string serverAddress = "127.0.0.1";
         static string userName = "kyle";
-        static string userPass = "***REMOVED***";
+        static string userPass = "**removed**";
         static string dbName = "beatspoints";
         //bankaccouns - username - amount
         //settings - settingName - value        - sessionLimit, numCoinsRequired
