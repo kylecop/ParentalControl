@@ -24,7 +24,7 @@ namespace ParentalControl
             try
             {
                 string imageTemp = SqlMethods.getSqlString("SELECT value FROM settings WHERE `settingName`='currentPicture'");
-                Image image1 = Image.FromFile("c:\\xampp\\htdocs\\" + imageTemp);
+                Image image1 = Image.FromFile("c:\\xampp\\Local-Point-Manager\\" + imageTemp);
                 pictureBox1.Image = image1;
                 pictureBox1.Size = image1.Size;
                 this.Size = image1.Size;
